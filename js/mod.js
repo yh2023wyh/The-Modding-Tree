@@ -1,7 +1,7 @@
 let modInfo = {
-	name: "The Test Tree yhoi",
+	name: "The Code Tester Tree by yhoi",
 	author: "yh2023wyh",
-	pointsName: "points",
+	pointsName: "Bytes of tested code",
 	modFiles: ["layers.js", "tree.js"],
 
 	discordName: "",
@@ -41,7 +41,7 @@ function getPointGen() {
 	if(!canGenPoints())
 		return new Decimal(0)
 
-	let gain = new Decimal(1)
+	let gain = new Decimal(128)
 	return gain
 }
 
