@@ -1,6 +1,6 @@
 let modInfo = {
-	name: "The ??? Tree",
-	author: "nobody",
+	name: "The Test Tree yhoi",
+	author: "yh2023wyh",
 	pointsName: "points",
 	modFiles: ["layers.js", "tree.js"],
 
@@ -12,12 +12,12 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "0.0",
+	num: "a0-0",
 	name: "Literally nothing",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
-	<h3>v0.0</h3><br>
+	<h3>a0-0</h3><br>
 		- Added things.<br>
 		- Added stuff.`
 
@@ -55,7 +55,7 @@ var displayThings = [
 
 // Determines when the game "ends"
 function isEndgame() {
-	return player.points.gte(new Decimal("e280000000"))
+	return player.points.gte(new Decimal("1.7977e308"))
 }
 
 
