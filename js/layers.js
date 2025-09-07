@@ -31,15 +31,15 @@ addLayer("r", {
             description: "Start gaining 128 bytes of tested code per second",
             cost: new Decimal(1),
         }
-        12:{
-            title: "Re-testing",
-            description: "Improve tested code gain based on tested code",
-            cost: new Decimal(2),
-            effect() {
-                return player.points.add(1).pow(0.4)
-            },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-        }
+        //12:{
+        //    title: "Re-testing",
+        //    description: "Improve tested code gain based on tested code",
+        //    cost: new Decimal(2),
+        //    effect() {
+        //        return player.points.add(1).pow(0.4)
+        //    },
+        //    effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        //}
         //13:{
         //    title: "Experience from previous reports",
         //    description: "Improve tested code gain based on test reports",
