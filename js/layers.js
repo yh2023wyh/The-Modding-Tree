@@ -18,28 +18,35 @@ addLayer("r", {
     },
     getResetGain(){
         let gain=player.points.dividedBy(1024)
+        let mult = new Decimal(1)
         let rooter=10
         if(gain<1) return 0;
-        gain=gain.root(new Decimal(1024).log(rooter))
+        if(hasUpgrade("r",14)) mult = mult.times(3);
+        gain=gain.root(new Decimal(1024).log(rooter)).times(mult).floor()
         return gain
     },
     getNextAt(){
+        let mult = new Decimal(1)
+        if(hasUpgrade("r",14)) mult = mult.times(3);
         let rooter=10
-        return player.points.dividedBy(1024).root(new Decimal(1024).log(rooter)).add(1).pow(new Decimal(1024).log(rooter))
+        return player.points.dividedBy(1024).root(new Decimal(1024).log(rooter)).times(mult).floor().add(1).pow(new Decimal(1024).log(rooter))
     },
     prestigeButtonText(){
+        if(player.points.lt(new Decimal(1024))) return "1024 bytes of tested code required";
         let rooter=10
-        let gain=player.points.dividedBy(1024).root(new Decimal(1024).log(rooter)).floor()
+        let mult = new Decimal(1)
+        if(hasUpgrade("r",14)) mult = mult.times(3);
+        let gain=player.points.dividedBy(1024).root(new Decimal(1024).log(rooter)).times(mult).floor()
         let textparti="Reset for " + gain + " test reports"
-        if(gain.lt(32)) textparti = textparti + "\r\n Next at " + gain.add(1).pow(new Decimal(1024).log(rooter)).times(1024).round()
+        if(gain.lt(32)) textparti = textparti + ", next at " + gain.add(1).dividedBy(mult).pow(new Decimal(1024).log(rooter)).times(1024).round() + " bytes of tested code";
         return textparti
     },
-    exponent: 0.5, // Prestige currency exponent
-    gainMult() { // Calculate the multiplier for main currency from bonuses
-        mult = new Decimal(1)
-        if(hasUpgrade("r",14)) mult = mult.times(3);
-        return mult
-    },
+    //exponent: 0.5, // Prestige currency exponent
+    //gainMult() { // Calculate the multiplier for main currency from bonuses
+    //   mult = new Decimal(1)
+    //    if(hasUpgrade("r",14)) mult = mult.times(3);
+    //    return mult
+    //},
     gainExp() { // Calculate the exponent on main currency from bonuses
         return new Decimal(1)
     },
@@ -80,7 +87,7 @@ addLayer("r", {
         15:{
             title: "Need for help?",
             description: "Unlock a new layer",
-            cost: new Decimal(50),
+            cost: new Decimal(64),
         }
     }
 })

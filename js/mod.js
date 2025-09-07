@@ -12,14 +12,14 @@ let modInfo = {
 
 // Set your version in num and name
 let VERSION = {
-	num: "a0-2",
+	num: "a0-4",
 	name: "First steps",
 }
 
 let changelog = `<h1>Changelog:</h1><br>
 	<h3>a0-x</h3><br>
-		- Added Layer 0.<br>
-		- Added Upgrades.`
+		- Added & balanced Layer R.<br>
+		- Added 5 Upgrades.`
 
 let winText = `Congratulations! You have reached the end and beaten this game, but for now...`
 
