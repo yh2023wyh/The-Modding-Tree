@@ -76,7 +76,7 @@ addLayer("r", {
             title: "Alpha test",
             description: "3x test report gain",
             cost: new Decimal(16),
-        }
+        },
         15:{
             title: "Need for help?",
             description: "Unlock a new layer",
