@@ -32,7 +32,7 @@ addLayer("r", {
             cost: new Decimal(1),
         }
         12:{
-            title: "Re-testing",
+            title: "Retesting",
             description: "Improve tested code gain based on tested code",
             cost: new Decimal(2),
         //    effect() {
