@@ -31,7 +31,11 @@ addLayer("r", {
             description: "Start gaining 128 bytes of tested code per second",
             cost: new Decimal(1),
         }
-        
+        12:{
+            title: "Initial testing 2",
+            description: "Start gaining 256 bytes of tested code per second",
+            cost: new Decimal(1),
+        }
         //13:{
         //    title: "Experience from previous reports",
         //    description: "Improve tested code gain based on test reports",
