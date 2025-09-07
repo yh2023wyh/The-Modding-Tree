@@ -40,14 +40,14 @@ addLayer("r", {
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         }
-        13:{
-            title: "Experience from previous reports",
-            description: "Improve tested code gain based on test reports",
-            cost: new Decimal(10),
-            effect() {
-                return player[this.layer].points.times(2).add(1).pow(0.5)
-            },
-            effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
-        }
+        //13:{
+        //    title: "Experience from previous reports",
+        //    description: "Improve tested code gain based on test reports",
+        //    cost: new Decimal(10),
+        //    effect() {
+        //        return player[this.layer].points.times(2).add(1).pow(0.5)
+        //    },
+        //    effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
+        //}
     }
 })
