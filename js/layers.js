@@ -11,13 +11,13 @@ addLayer("r", {
     resource: "test reports", // Name of prestige currency
     baseResource: "Bytes of tested code", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
-    type: "custom", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
-    getResetGain(){
-        let gain=player.points.dividedBy(1024);
-        if(gain<1) return 0
-        gain=gain.root(log10(1024))
-        return gain
-    }
+    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    //getResetGain(){
+    //    let gain=player.points.dividedBy(1024);
+    //    if(gain<1) return 0
+    //    gain=gain.root(log10(1024))
+    //    return gain
+    //}
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
