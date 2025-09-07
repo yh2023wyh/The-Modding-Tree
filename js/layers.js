@@ -7,26 +7,37 @@ addLayer("r", {
 		points: new Decimal(0),
     }},
     color: "#BBBBCC",
-    type: "normal", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
+    type: "custom", // normal: cost to gain currency depends on amount gained. static: cost depends on how much you already have
     requires: new Decimal(1024), // Can be a function that takes requirement increases into account
     resource: "test reports", // Name of prestige currency
     baseResource: "Bytes of tested code", // Name of resource prestige is based on
     baseAmount() {return player.points}, // Get the current amount of baseResource
-    //canReset(){
-    //    if(lt(player.points,new Decimal(-1))) return false;
-    //    return true
-    //}
-    //getResetGain(){
-    //    let gain=player.points.dividedBy(1024)
-    //   let rooter=10
-    //    if(gain<1) return 0;
-    //   gain=gain.root(new Decimal(1024).log(rooter))
-    //    return gain
-    //},
+    canReset(){
+        if(player.points.lt(new Decimal(1024))) return false;
+        return true
+    },
+    getResetGain(){
+        let gain=player.points.dividedBy(1024)
+        let rooter=10
+        if(gain<1) return 0;
+        gain=gain.root(new Decimal(1024).log(rooter))
+        return gain
+    },
+    getNextAt(){
+        let rooter=10
+        return player.points.dividedBy(1024).root(new Decimal(1024).log(rooter)).add(1).pow(new Decimal(1024).log(rooter))
+    },
+    prestigeButtonText(){
+        let rooter=10
+        let gain=player.points.dividedBy(1024).root(new Decimal(1024).log(rooter)).floor()
+        let textparti="Reset for " + gain + " test reports"
+        if(gain.lt(32)) textparti = textparti + "\r\n Next at " + gain.add(1).pow(new Decimal(1024).log(rooter)).times(1024).round()
+        return textparti
+    },
     exponent: 0.5, // Prestige currency exponent
     gainMult() { // Calculate the multiplier for main currency from bonuses
         mult = new Decimal(1)
-        if(hasUpgrade("r",14)) mult = mult.times(2.5);
+        if(hasUpgrade("r",14)) mult = mult.times(3);
         return mult
     },
     gainExp() { // Calculate the exponent on main currency from bonuses
@@ -46,16 +57,16 @@ addLayer("r", {
         12:{
             title: "Re-testing",
             description: "Improve tested code gain based on tested code",
-            cost: new Decimal(3),
+            cost: new Decimal(2),
             effect() {
-                return player.points.add(1).pow(0.3)
+                return player.points.add(1).pow(1.0/3)
             },
             effectDisplay() { return format(upgradeEffect(this.layer, this.id))+"x" }, // Add formatting to the effect
         },
         13:{
             title: "Experience from previous reports",
             description: "Improve tested code gain based on test reports",
-            cost: new Decimal(20),
+            cost: new Decimal(5),
             effect() {
                 return player[this.layer].points.times(2).add(1).pow(0.5)
             },
@@ -63,8 +74,13 @@ addLayer("r", {
         },
         14:{
             title: "Alpha test",
-            description: "2.5x test report gain",
-            cost: new Decimal(60),
+            description: "3x test report gain",
+            cost: new Decimal(16),
+        }
+        15:{
+            title: "Need for help?",
+            description: "Unlock a new layer",
+            cost: new Decimal(50),
         }
     }
 })
