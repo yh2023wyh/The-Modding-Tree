@@ -116,7 +116,7 @@ addLayer("h", {
     baseAmount() {return player["r"].points}, // Get the current amount of baseResource
     exponent: 1, // Prestige currency exponent
     canReset(){
-        if(player.points.lt(new Decimal(64))) return false;
+        if(player["r"].points.lt((new Decimal(64)).pow(player["h"].points))) return false;
         return true
     },
     gainMult() { // Calculate the multiplier for main currency from bonuses
